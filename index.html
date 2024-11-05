@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact</title>
-    <link rel="shortcut icon" type="image" href="../image/logo.png" />
-    <link rel="stylesheet" href="./contact.css" />
+    <title>Cake Bakery</title>
+    <link rel="shortcut icon" type="image" href="./image/logo.png" />
+    <link rel="stylesheet" href="./style.css" />
     <!-- bootstrap links -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -65,8 +65,8 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <!-- Brand -->
-          <a class="navbar-brand" href="../index.html" id="logo"
-            ><img src="../image/logo.png" alt="" width="50px" />Cake Bakery</a
+          <a class="navbar-brand" href="index.html" id="logo"
+            ><img src="./image/logo.png" alt="" width="50px" />Cake Bakery</a
           >
 
           <!-- Toggler/collapsibe Button -->
@@ -76,26 +76,26 @@
             data-toggle="collapse"
             data-target="#collapsibleNavbar"
           >
-            <span><img src="../image/menu.png" alt="" width="30px" /></span>
+            <span><img src="./image/menu.png" alt="" width="30px" /></span>
           </button>
 
           <!-- Navbar links -->
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="../index.html">Home</a>
+                <a class="nav-link" href="index.html">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="cakes.html">Cakes</a>
+                <a class="nav-link" href="app/views/cakes.php"">Cakes</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Galary</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">About</a>
+                <a class="nav-link" href="app/views/about.html">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact</a>
+                <a class="nav-link" href="./app/views/contact.html">Contact</a>
               </li>
             </ul>
             <form class="d-flex">
@@ -110,65 +110,151 @@
           </div>
           <!-- icons -->
           <div class="icons">
-            <img src="../image/user.png" alt="" width="20px" />
-            <img src="../image/heart.png" alt="" width="20px" />
-            <img src="../image/add.png" alt="" width="24px" />
+            <img src="./image/user.png" alt="" width="20px" />
+            <img src="./image/heart.png" alt="" width="20px" />
+            <img src="./image/add.png" alt="" width="24px" />
           </div>
           <!-- icons -->
         </div>
       </nav>
       <!-- navbar end -->
-      <!-- contact  -->
+
+      <!-- home section -->
+      <div class="home">
+        <div class="content" data-aos="zoom-out-right">
+          <h3>Delicious <br />Cakes Bakery</h3>
+          <h2>Category <span class="changecontent"></span></h2>
+          <p>
+            Welcome to Our Cake Bakery Shop!
+            <br />Enjoy and choose your favorite Cake <br />
+            ⬇⬇⬇
+          </p>
+          <a href="app/views/cakes.php" class="btn">Order Now</a>
+        </div>
+        <div class="img" data-aos="zoom-out-left">
+          <img src="./image/background.png" alt="" />
+        </div>
+      </div>
+      <!-- home section end -->
+
+      <!-- top cards -->
       <div
         class="container"
-        id="contact"
+        id="box"
         data-aos="fade-up"
         data-aos-duration="1500"
       >
-        <h1>CONTACT US</h1>
         <div class="row">
-          <div class="col-md-4 py-1 py-md-0">
-            <div class="form-group">
-              <input
-                type="text"
-                class="form-control"
-                id="usr"
-                placeholder="Name"
-              />
+          <div class="col-md-4 py-3 py-md-0">
+            <div class="card">
+              <img src="./image/box1.jpg" alt="" />
             </div>
           </div>
-          <div class="col-md-4 py-1 py-md-0">
-            <div class="form-group">
-              <input
-                type="email"
-                class="form-control"
-                id="eml"
-                placeholder="Email"
-              />
+          <div class="col-md-4 py-3 py-md-0">
+            <div class="card">
+              <img src="./image/box2.jpg" alt="" />
             </div>
           </div>
-          <div class="col-md-4 py-1 py-md-0">
-            <div class="form-group">
-              <input
-                type="number"
-                class="form-control"
-                id="phn"
-                placeholder="Phone"
-              />
+          <div class="col-md-4 py-3 py-md-0">
+            <div class="card">
+              <img src="./image/box3.jpg" alt="" />
             </div>
           </div>
         </div>
-        <div class="form-group">
-          <textarea
-            class="form-control"
-            rows="5"
-            id="comment"
-            placeholder="Message"
-          ></textarea>
-        </div>
-        <div id="messagebtn"><button>Send Message</button></div>
       </div>
-      <!-- contact end -->
+      <!-- top cards end -->
+
+      <!-- banner -->
+      <div class="banner" data-aos="fade-up" data-aos-duration="1500">
+        <div class="content">
+          <h3>Delicious Cake</h3>
+          <h2>UPTO 50% OFF</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam,
+            quod.
+          </p>
+          <div id="btnorder">
+            <button>
+              <a
+                href="app/views/cakes.php"
+                style="text-decoration: none; color: white"
+                >Order Now</a
+              >
+            </button>
+          </div>
+        </div>
+        <div class="img">
+          <img src="./image/banner-background.png" alt="" />
+        </div>
+      </div>
+      <!-- banner end -->
+
+      <!-- gallary -->
+      <section id="gallary" data-aos="fade-up" data-aos-duration="1500">
+        <div class="container">
+          <h1>OUR GALLARY</h1>
+          <div class="row" style="margin-top: 30px">
+            <div class="col-md-4 py-3 py-md-0">
+              <div class="card">
+                <div class="overlay">
+                  <h3 class="text-center">Donuts</h3>
+                </div>
+                <img src="./image/o1.png" alt="" />
+              </div>
+            </div>
+            <div class="col-md-4 py-3 py-md-0">
+              <div class="card">
+                <div class="overlay">
+                  <h3 class="text-center">Ice Cream</h3>
+                </div>
+                <img src="./image/o2.png" alt="" />
+              </div>
+            </div>
+            <div class="col-md-4 py-3 py-md-0">
+              <div class="card">
+                <div class="overlay">
+                  <h3 class="text-center">Cup Cake</h3>
+                </div>
+                <img src="./image/o3.png" alt="" />
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="row"
+            style="margin-top: 30px"
+            data-aos="fade-up"
+            data-aos-duration="1500"
+          >
+            <div class="col-md-4 py-3 py-md-0">
+              <div class="card">
+                <div class="overlay">
+                  <h3 class="text-center">Delicious Cake</h3>
+                </div>
+                <img src="./image/o4.png" alt="" />
+              </div>
+            </div>
+            <div class="col-md-4 py-3 py-md-0">
+              <div class="card">
+                <div class="overlay">
+                  <h3 class="text-center">Chocolate Cake</h3>
+                </div>
+                <img src="./image/o5.png" alt="" />
+              </div>
+            </div>
+            <div class="col-md-4 py-3 py-md-0">
+              <div class="card">
+                <div class="overlay">
+                  <h3 class="text-center">Slice Cake</h3>
+                </div>
+                <img src="./image/o6.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- gallary -->
+
       <!-- footer -->
       <footer id="footer" data-aos="fade-up" data-aos-duration="1500">
         <h1 class="text-center">Cake Bakery</h1>
@@ -194,6 +280,10 @@
         </div>
       </footer>
       <!-- footer -->
+
+      <a href="#" class="arrow"
+        ><i><img src="./image/up-arrow.png" alt="" width="50px" /></i
+      ></a>
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
