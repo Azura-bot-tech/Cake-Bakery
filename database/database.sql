@@ -7,10 +7,11 @@ create table `user` (
     `id` int not null primary key auto_increment,
     `full_name` varchar(255) not null,
     `username` varchar(255) not null,
-    `password` varchar(255) not null
+    `password` varchar(255) not null,
+    `email` varchar(255) not null
 );
 
-insert into `user` (`full_name`, `username`, `password`) values ('Hung Ho', 'hungho02', 'Hungho02');
+insert into `user` (`full_name`, `username`, `password`, `email`) values ('Hung Ho', 'hungho02', 'Hungho02', 'hungho02@gmail.com');
 
 drop table if exists `product`;
 create table `product` (

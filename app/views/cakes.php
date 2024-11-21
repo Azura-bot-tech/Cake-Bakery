@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cakes</title>
-    <link rel="shortcut icon" type="image" href="../image/logo.png" />
-    <link rel="stylesheet" href="./cakes.css" />
+    <link rel="shortcut icon" type="image" href="../../image/logo.png" />
+    <link rel="stylesheet" href="cakes.css" />
     <!-- bootstrap links -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -49,75 +52,7 @@
     <!-- animation links -->
   </head>
   <body>
-    <div class="all-content">
-      <!-- navbar -->
-      <nav class="navbar navbar-expand-md" id="navbar">
-        <div class="container-fluid">
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <!-- Brand -->
-          <a class="navbar-brand" href="../../index.html" id="logo"
-            ><img src="../../image/logo.png" alt="" width="50px" />Cake Bakery</a
-          >
-
-          <!-- Toggler/collapsibe Button -->
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#collapsibleNavbar"
-          >
-            <span><img src="../../image/menu.png" alt="" width="30px" /></span>
-          </button>
-
-          <!-- Navbar links -->
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="../../index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="cakes.php">Cakes</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Galary</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.html">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact</a>
-              </li>
-            </ul>
-            <form class="d-flex">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button class="btn text-white" type="submit">Search</button>
-            </form>
-          </div>
-          <!-- icons -->
-          <div class="icons">
-            <img src="../../image/user.png" alt="" width="20px" />
-            <img src="../../image/heart.png" alt="" width="20px" />
-            <img src="../../image/add.png" alt="" width="24px" />
-          </div>
-          <!-- icons -->
-        </div>
-      </nav>
-      <!-- navbar end -->
+    <?php include "template/navbar.php"; ?>
 
       <!-- product cards -->
       <?php
@@ -238,32 +173,7 @@
 
       <!-- product cards end-->
 
-      <!-- footer -->
-      <footer id="footer" data-aos="fade-up" data-aos-duration="1500">
-        <h1 class="text-center">Cake Bakery</h1>
-        <p class="text-center">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
-          accusantium.
-        </p>
-        <div class="icons text-center">
-          <i class="bx bxl-twitter"></i>
-          <i class="bx bxl-facebook"></i>
-          <i class="bx bxl-google"></i>
-          <i class="bx bxl-skype"></i>
-          <i class="bx bxl-instagram"></i>
-        </div>
-        <div class="copyright text-center">
-          &copy; Copyright <strong>Cake Bakery</strong> .All Rights Reserved
-        </div>
-        <div class="credite text-center">
-          Designed By
-          <a href="https://oisp.hcmut.edu.vn/en/"
-            ><span>HO CHI MINH UNIVERSITY OF SCIENCE AND TECHNOLOGY</span></a
-          >
-        </div>
-      </footer>
-      <!-- footer -->
-    </div>
+    <?php include "template/footer.php";?>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
