@@ -110,6 +110,7 @@
 }
 
 .user-actions a {
+  margin-right: 30px;
   color: rgb(236, 88, 88);
   text-decoration: none;
   transition: 0.5s ease;

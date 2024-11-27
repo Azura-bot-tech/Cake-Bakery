@@ -59,7 +59,7 @@
           </div>
           <!-- icons -->
           <div class="icons">
-            <a href="user.php"><img src="../../../image/user.png" alt="" width="20px" /></a>
+            <a href="../controller/user.php"><img src="../../../image/user.png" alt="" width="20px" /></a>
             <img src="../../../image/heart.png" alt="" width="20px" />
             <img src="../../../image/add.png" alt="" width="24px" />
           </div>
