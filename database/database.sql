@@ -2,6 +2,20 @@ drop database if exists `cake`;
 create database `cake`;
 use `cake`;
 
+-- Tạo bảng admin nếu chưa tồn tại
+drop table if exists `admin`;
+create table `admin` (
+    `id` int not null primary key auto_increment,
+    `full_name` varchar(255) not null,
+    `username` varchar(255) not null unique,
+    `password` varchar(255) not null,
+    `email` varchar(255) not null unique
+);
+
+-- Thêm tài khoản admin mẫu
+insert into `admin` (`full_name`, `username`, `password`, `email`) 
+values ('Admin', 'admin', 'Admin', 'admin01@example.com');
+
 drop table if exists `user`;
 create table `user` (
     `id` int not null primary key auto_increment,

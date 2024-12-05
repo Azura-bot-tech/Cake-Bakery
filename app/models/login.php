@@ -43,28 +43,47 @@
     }
   }
 
-  // Xử lý đăng nhập
-  if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    // Xử lý đăng nhập
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
 
-    $sql = "SELECT * FROM user WHERE username='$username'";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        if ($password !== $row['password']) {
-            echo "<script>alert('Incorrect username or password.'); window.location.href='login.php';</script>";
-            exit();
+        // Kiểm tra trong bảng user
+        $sql_user = "SELECT * FROM user WHERE username='$username'";
+        $result_user = $conn->query($sql_user);
+
+        // Kiểm tra trong bảng admin
+        $sql_admin = "SELECT * FROM admin WHERE username='$username'";
+        $result_admin = $conn->query($sql_admin);
+
+        if ($result_user->num_rows > 0) {
+            $row = $result_user->fetch_assoc();
+            if ($password !== $row['password']) {
+                echo "<script>alert('Incorrect username or password.'); window.location.href='login.php';</script>";
+                exit();
+            } else {
+                $_SESSION['username'] = $row['username'];
+                $_SESSION['role'] = 'user'; // Lưu vai trò là user
+                echo "<script>alert('Login successful!'); window.location.href='../controller/home.php';</script>";
+                exit();
+            }
+        } elseif ($result_admin->num_rows > 0) {
+            $row = $result_admin->fetch_assoc();
+            if ($password !== $row['password']) {
+                echo "<script>alert('Incorrect username or password.'); window.location.href='login.php';</script>";
+                exit();
+            } else {
+                $_SESSION['username'] = $row['username'];
+                $_SESSION['role'] = 'admin'; // Lưu vai trò là admin
+                echo "<script>alert('Admin login successful!'); window.location.href='../controller/home.php';</script>";
+                exit();
+            }
         } else {
-            $_SESSION['username'] = $row['username'];
-            echo "<script>alert('Login successful!'); window.location.href='../controller/home.php';</script>";
+            echo "<script>alert('User not found.'); window.location.href='login.php';</script>";
             exit();
         }
-    } else {
-        echo "<script>alert('User not found.'); window.location.href='login.php';</script>";
-        exit();
     }
-  }
+
   ?>
     <div class="container" id="container">
         <div class="form-container sign-up-container">

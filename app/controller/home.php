@@ -1,3 +1,10 @@
+<?php 
+  include '../../config/config.php'; 
+  session_start(); // Bắt đầu session để lấy thông tin người dù
+  // Kiểm tra vai trò người dùng
+  $is_admin = (isset($_SESSION['role']) && $_SESSION['role'] === 'admin');   
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -49,8 +56,8 @@
     <!-- animation links -->
   </head>
   <body>
-    <?php include "template/navbar.php"; ?>
-
+      <?php include $is_admin ? "template/navbar_admin.php" : "template/navbar.php"; ?>
+      
       <!-- home section -->
       <div class="home">
         <div class="content" data-aos="zoom-out-right">
@@ -68,7 +75,6 @@
         </div>
       </div>
       <!-- home section end -->
-
       <!-- top cards -->
       <div
         class="container"
@@ -186,6 +192,8 @@
         </div>
       </section>
       <!-- gallary -->
+
+      
       <?php include "template/footer.php"; ?>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
