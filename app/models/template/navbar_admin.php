@@ -14,7 +14,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <!-- Brand -->
-          <a class="navbar-brand" href="home.php" id="logo"
+          <a class="navbar-brand" href="../controller/home.php" id="logo"
             ><img src="../../../image/logo.png" alt="" width="50px" />Cake Bakery</a
           >
 
