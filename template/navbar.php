@@ -44,7 +44,7 @@
                 <a class="nav-link" href="app/views/about.php">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./app/views/contact.html">Contact</a>
+                <a class="nav-link" href="./app/views/contact.php">Contact</a>
               </li>
             </ul>
             <form class="d-flex">

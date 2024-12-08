@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -54,54 +51,92 @@ session_start();
   <body>
     <?php include "template/navbar.php";?>
       <!-- contact  -->
+
+      <?php
+        include "../../config/config.php";
+
+        // Kiểm tra xem form đã được gửi hay chưa
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $phone = $_POST['phone'];
+            $message = $_POST['message'];
+
+            if (empty($name) || empty($email) || empty($phone) || empty($message)) {
+                echo "<script>alert('Please fill in all fields.'); window.location.href='contact.php';</script>";
+                exit();
+            }
+
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                echo "<script>alert('Invalid email format.'); window.location.href='contact.php';</script>";
+                exit();
+            }
+
+            // Thực hiện câu lệnh INSERT
+            $sql = "INSERT INTO contact_message (name, email, phone, message) VALUES ('$name', '$email', '$phone', '$message')";
+            if ($conn->query($sql) === TRUE) {
+                echo "<script>alert('Message sent successfully!'); window.location.href='contact.php';</script>";
+                exit();
+            } else {
+                echo "<script>alert('Error sending message.'); window.location.href='contact.php';</script>"; 
+                exit();
+            }
+        }
+      ?>
       <div
-        class="container"
+        class="container"   
         id="contact"
         data-aos="fade-up"
         data-aos-duration="1500"
       >
         <h1>CONTACT US</h1>
-        <div class="row">
-          <div class="col-md-4 py-1 py-md-0">
-            <div class="form-group">
-              <input
-                type="text"
-                class="form-control"
-                id="usr"
-                placeholder="Name"
-              />
+        <form method="POST" action="contact.php">
+          <div class="row">
+            <div class="col-md-4 py-1 py-md-0">
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="usr"
+                  name="name" 
+                  placeholder="Name"
+                />
+              </div>
+            </div>
+            <div class="col-md-4 py-1 py-md-0">
+              <div class="form-group">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="eml"
+                  name="email"
+                  placeholder="Email"
+                />
+              </div>
+            </div>
+            <div class="col-md-4 py-1 py-md-0">
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="phn"
+                  name="phone" 
+                  placeholder="Phone"
+                />
+              </div>
             </div>
           </div>
-          <div class="col-md-4 py-1 py-md-0">
-            <div class="form-group">
-              <input
-                type="email"
-                class="form-control"
-                id="eml"
-                placeholder="Email"
-              />
-            </div>
+          <div class="form-group">
+            <textarea
+              class="form-control"
+              rows="5"
+              id="comment"
+              name="message" 
+              placeholder="Message"
+            ></textarea>
           </div>
-          <div class="col-md-4 py-1 py-md-0">
-            <div class="form-group">
-              <input
-                type="number"
-                class="form-control"
-                id="phn"
-                placeholder="Phone"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <textarea
-            class="form-control"
-            rows="5"
-            id="comment"
-            placeholder="Message"
-          ></textarea>
-        </div>
-        <div id="messagebtn"><button>Send Message</button></div>
+          <div id="messagebtn"><button type="submit" name="send_message">Send Message</button></div>
+        </form>
       </div>
       <!-- contact end -->
     

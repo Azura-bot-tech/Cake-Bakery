@@ -40,6 +40,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="../models/user_management.php">Account Management</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../models/message_management.php">Message Management</a>
+              </li>
             </ul>
           </div>
           <!-- icons -->

@@ -50,3 +50,14 @@ insert into `product` (`id`, `name`, `price`, `description`, `image_url`, `distr
 ('10', 'Bir Cup Cake', '300.20', 'Description of Cake 10', 'https://res.cloudinary.com/dukdqd5ao/image/upload/v1730684108/c10_jbshlv.png', 'Birthday Cakes'),
 ('11', 'Pink Birthday Cake', '100.50', 'Description of Cake 11', 'https://res.cloudinary.com/dukdqd5ao/image/upload/v1730684108/c11_ex9zqh.png', 'Birthday Cakes'),
 ('12', 'Cup Cake', '50.10', 'Description of Cake 12', 'https://res.cloudinary.com/dukdqd5ao/image/upload/v1730684109/c12_c7k2se.png', 'Birthday Cakes');
+
+drop table if exists `contact_message`;
+create table `contact_message` (
+    `id` int not null primary key auto_increment,
+    `name` varchar(255) not null,
+    `email` varchar(255) not null,
+    `phone` varchar(255) not null,
+    `message` text not null,
+    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
