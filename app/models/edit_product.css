@@ -99,6 +99,8 @@ h1 {
     border-bottom: 2px solid #DEB887;
 }
 
+
+
 /* Search bar styling */
 .search-bar {
     max-width: 600px;
@@ -139,6 +141,23 @@ h1 {
 
 .search-btn:hover {
     background: #FFE4B5;
+}
+
+button.add_btn {
+    padding: 8px 16px;
+    margin-left: 30px;
+    background: #DEB887;
+    border: none;
+    border-radius: 4px;
+    color: #8B4513;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+button.add_btn:hover {
+    background: #FFE4B5;
+    transform: translateY(-2px);
 }
 
 /* Table styling */
@@ -216,7 +235,8 @@ tr:last-child td[colspan] {
 }
 
 /* Modal */
-.modal {
+.modal,
+.modal-add {
     display: none;
     position: fixed;
     z-index: 1000;
@@ -227,7 +247,8 @@ tr:last-child td[colspan] {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal-content {
+.modal-content,
+.modal-content-add {
     background: linear-gradient(to bottom right, #8B4513, #654321);
     padding: 30px;
     border-radius: 15px;
@@ -238,7 +259,8 @@ tr:last-child td[colspan] {
     color: #FFE4C4;
 }
 
-.close-btn {
+.close-btn,
+.close-btn-add {
     position: absolute;
     right: 20px;
     top: 20px;
@@ -248,7 +270,8 @@ tr:last-child td[colspan] {
     transition: color 0.3s ease;
 }
 
-.close-btn:hover {
+.close-btn:hover,
+.close-btn-add:hover {
     color: #FFE4B5;
 }
 
@@ -261,7 +284,8 @@ h3 {
     padding-bottom: 15px;
 }
 
-#editForm {
+#editForm,
+#editForm-add {
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -301,6 +325,27 @@ textarea {
     min-height: 80px;
 }
 
+.delete-btn{ 
+    background: #c72d15 !important;
+    color: #020202 !important;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.delete-btn:hover {
+  background: #ec4c4c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .btn {
     background: #e3a14b !important;
     color: #020202 !important;
@@ -324,7 +369,8 @@ textarea {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .modal-content {
+    .modal-content,
+    .modal-content-add {
         margin: 20px;
         padding: 20px;
     }

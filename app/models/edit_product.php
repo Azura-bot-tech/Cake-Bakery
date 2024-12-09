@@ -19,6 +19,47 @@ $stmt->execute();
 $result = $stmt->get_result();
 $products = $result->fetch_all(MYSQLI_ASSOC);
 
+// Xử lý thêm sản phẩm
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_product'])) {
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $description = $_POST['description'];
+    $distribution = $_POST['distribution'];
+    $image_url = $_POST['image_url'];
+
+    $sql = "INSERT INTO product (name, price, description, image_url, distribution) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sdsss", $name, $price, $description, $image_url, $distribution);
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Thêm sản phẩm thành công!');</script>";
+        header("Location: " . $_SERVER['PHP_SELF'] . "?success=true");
+        exit();
+    } else {
+        echo "<script>alert('Thêm sản phẩm thất bại!');</script>";
+    }
+
+    $stmt->close();
+}
+
+// Xử lý xóa sản phẩm
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_product'])) {
+    $id = intval($_POST['id']);
+
+    // Chuẩn bị câu lệnh SQL để xóa sản phẩm
+    $stmt = $conn->prepare("DELETE FROM product WHERE id = ?");
+    $stmt->bind_param("i", $id);
+
+    // Thực thi câu lệnh và kiểm tra kết quả
+    if ($stmt->execute()) {
+        // Chuyển hướng sau khi xóa thành công
+        header("Location: " . $_SERVER['PHP_SELF'] . "?delete_success=true");
+        exit();
+    } else {
+        echo "<script>alert('Xóa sản phẩm thất bại!');</script>";
+    }
+}
+
 // Xử lý lấy dữ liệu sản phẩm (khi nhấn nút sửa)
 if (isset($_GET['get_product']) && isset($_GET['id'])) {
     $productId = intval($_GET['id']);
@@ -116,6 +157,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_product'])) {
         <button type="submit" class="search-btn">Tìm kiếm</button>
     </form>
 
+    <!-- Nút mở form thêm sản phẩm-->
+    <button class="add_btn" id="add-product">Thêm Sản Phẩm</button>
+
+    <!-- Form Thêm sản phẩm -->
+    <div id="editModal-add" class="modal-add">
+        <div class="modal-content-add">
+            <span class="close-btn-add">&times;</span>
+            <form id="editForm-add" method="POST">
+                <label for="name">Tên sản phẩm:</label>
+                <input type="text" name="name" id="add-productName" required>
+
+                <label for="price">Giá:</label>
+                <input type="number" name="price" id="add-productPrice" step="0.01" required>
+
+                <label for="description">Mô tả:</label>
+                <textarea name="description" id="add-productDescription" rows="4" required></textarea>
+
+                <label for="distribution">Phân phối:</label>
+                <textarea name="distribution" id="add-productDistribution" rows="2" required></textarea>
+
+                <label for="image_url">Link ảnh:</label>
+                <textarea name="image_url" id="add-productImage_url" rows="2" required></textarea>
+
+                <button type="submit" name="add_product" class="btn">Thêm sản phẩm</button>
+            </form>
+        </div>
+    </div>
+
     <!-- Bảng sản phẩm -->
     <table border="1" cellpadding="10" cellspacing="0">
         <tr>
@@ -170,6 +239,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_product'])) {
                 <textarea name="image_url" id="productImage_url" rows="2" required></textarea>
 
                 <button type="submit" name="update_product" class="btn">Lưu thay đổi</button>
+                <button type="submit" name="delete_product" class="delete-btn">Xóa sản phẩm</button>
             </form>
         </div>
     </div>
@@ -218,6 +288,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_product'])) {
         window.addEventListener('click', event => {
             if (event.target === modal) {
                 modal.style.display = 'none';
+            }
+        });
+
+        // Mở form thêm sản phẩm
+        const addButtons = document.querySelectorAll('.add_btn');
+        const modal_add = document.getElementById('editModal-add');
+        const closeBtn_add = document.querySelector('.close-btn-add');
+            
+        // Hiển thị modal và điền dữ liệu
+        addButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                modal_add.style.display = 'block';
+            });
+        });
+
+        // Đóng modal
+        closeBtn_add.addEventListener('click', () => {
+            modal_add.style.display = 'none';
+        });
+
+        window.addEventListener('click', event => {
+            if (event.target === modal) {
+                modal_add.style.display = 'none';
             }
         });
     </script>
