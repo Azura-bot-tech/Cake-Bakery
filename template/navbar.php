@@ -37,9 +37,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="app/views/cakes.php"">Cakes</a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link" href="#">Galary</a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a class="nav-link" href="app/views/about.php">About</a>
               </li>

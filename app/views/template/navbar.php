@@ -47,9 +47,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="cakes.php">Cakes</a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link" href="#">Galary</a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a class="nav-link" href="about.php">About</a>
               </li>
@@ -75,7 +75,12 @@
             <?php else: ?>
                 <a href="../controller/user.php"><img src="../../../image/user.png" alt="" width="20px" /></a>
             <?php endif; ?>
-            <img src="../../../image/heart.png" alt="" width="20px" />
+
+            <?php if (!isset($_SESSION['username'])): ?>
+                <a href="../models/login.php"><img src="../../../image/heart.png" alt="" width="20px" /></a>
+            <?php else: ?>
+                <a href="../controller/wishlist.php"><img src="../../../image/heart.png" alt="" width="20px" /></a>
+            <?php endif; ?>
             <img src="../../../image/add.png" alt="" width="24px" />
           </div>
           <!-- icons -->

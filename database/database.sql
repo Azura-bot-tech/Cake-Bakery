@@ -61,3 +61,12 @@ create table `contact_message` (
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+drop table if exists `wishlist`;
+create table `wishlist` (
+    `id` int not null primary key auto_increment,
+    `product_id` int not null,
+    `username` varchar(255) not null,
+    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+alter table `wishlist` add foreign key (`product_id`) references `product`(`id`) on delete cascade;

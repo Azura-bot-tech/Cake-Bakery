@@ -1,3 +1,6 @@
+<?php 
+  session_start(); // Bắt đầu session để lấy thông tin người dùng
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
