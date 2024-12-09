@@ -52,31 +52,61 @@ session_start();
     <!-- animation links -->
   </head>
   <body>
-    <?php include "template/navbar.php"; ?>
-
     <!-- content -->
     <?php
     // Connect to the database
     include '../../config/config.php';
+    // Kiểm tra vai trò người dùng
+    $is_admin = (isset($_SESSION['role']) && $_SESSION['role'] === 'admin');  
+    // Lấy thông tin tài khoản đang đăng nhập
     $username = $_SESSION['username'];
-    $sql = "SELECT full_name, email FROM user WHERE username='$username'";
-    $result = $conn->query($sql);
-    $user = $result->fetch_assoc();
+    
+    if (!$is_admin) {
+        // Tài khoản là user
+        $sql_user = "SELECT full_name, email FROM user WHERE username='$username'";
+        $result_user = $conn->query($sql_user);
+        $user = $result_user->fetch_assoc();
+        $user_type = 'user';
+        $full_name = $user['full_name'];
+        $email = $user['email'];
+    } elseif ($is_admin) {
+        // Tài khoản là admin
+        $sql_admin = "SELECT full_name, email FROM admin WHERE username='$username'";
+        $result_admin = $conn->query($sql_admin);
+        $admin = $result_admin->fetch_assoc();
+        $user_type = 'admin';
+        $full_name = $admin['full_name'];
+        $email = $admin['email'];
+    } else {
+        // Tài khoản không tồn tại
+        echo "<script>alert('User not found.'); window.location.href='login.php';</script>";
+        exit();
+    }
     ?>
+    <?php include $is_admin ? "template/navbar_admin.php" : "template/navbar.php"; ?>
     <div id="user" data-aos="fade-up" data-aos-duration="1500">
-        <h1>Welcome, <?php echo $_SESSION['username']; ?></h1>
+        <h1>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></h1>
         <h2>Your account information:</h2>
-        <p>Full name: <?php echo $user['full_name']; ?></p>
-        <p>Email: <?php echo $user['email']; ?></p>
+        <p>Full name: <?php echo htmlspecialchars($full_name); ?></p>
+        <p>Email: <?php echo htmlspecialchars($email); ?></p>
+    
         <h3>Change password:</h3>
         <?php
+        // Xử lý thay đổi mật khẩu
         if (isset($_POST['change_password'])) {
             $new_password = $_POST['new_password'];
             $confirm_password = $_POST['confirm_password'];
-
-            if ($new_password == $confirm_password) {
-                $sql = "UPDATE user SET password='$new_password' WHERE username='$username'";
-                if ($conn->query($sql) === TRUE) {
+        
+            if ($new_password === $confirm_password) {
+                // Xác định bảng cần cập nhật dựa trên loại tài khoản
+                $table = ($user_type === 'user') ? 'user' : 'admin';
+                $sql_update = "UPDATE $table SET password=? WHERE username=?";
+                $stmt = $conn->prepare($sql_update);
+                $stmt->bind_param('ss', $new_password, $username);
+            
+                if ($stmt->execute()) {
+                  if ($is_admin) echo "<script>alert('Password changed successfully!'); window.location.href='../controller/admin.php';</script>";
+                  elseif (!$is_admin)
                     echo "<script>alert('Password changed successfully!'); window.location.href='../controller/user.php';</script>";
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -86,9 +116,10 @@ session_start();
             }
         }
         ?>
+    
         <form action="" method="post">
-            <input type="password" name="new_password" placeholder="New password">
-            <input type="password" name="confirm_password" placeholder="Confirm password">
+            <input type="password" name="new_password" placeholder="New password" required>
+            <input type="password" name="confirm_password" placeholder="Confirm password" required>
             <input type="submit" name="change_password" value="Change password">
         </form>
     </div>

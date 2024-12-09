@@ -1,5 +1,5 @@
-<?php
-session_start();
+<?php 
+  session_start(); // Bắt đầu session để lấy thông tin người dùng
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +52,7 @@ session_start();
     <!-- animation links -->
   </head>
   <body>
-    <?php include "template/navbar.php"; ?>
+    <?php include "template/navbar.php"; ?> 
 
       <!-- product cards -->
       <?php
@@ -170,9 +170,7 @@ session_start();
           </div>
         </div>
       </section>
-
       <!-- product cards end-->
-
     <?php include "template/footer.php";?>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

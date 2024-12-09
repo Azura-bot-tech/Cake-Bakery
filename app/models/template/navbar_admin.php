@@ -14,8 +14,8 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <!-- Brand -->
-          <a class="navbar-brand" href="../index.php" id="logo"
-            ><img src="../image/logo.png" alt="" width="50px" />Cake Bakery</a
+          <a class="navbar-brand" href="../controller/home.php" id="logo"
+            ><img src="../../../image/logo.png" alt="" width="50px" />Cake Bakery</a
           >
 
           <!-- Toggler/collapsibe Button -->
@@ -25,43 +25,31 @@
             data-toggle="collapse"
             data-target="#collapsibleNavbar"
           >
-            <span><img src="../image/menu.png" alt="" width="30px" /></span>
+            <span><img src="../../../image/menu.png" alt="" width="30px" /></span>
           </button>
 
           <!-- Navbar links -->
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="../index.php">Home</a>
+                <a class="nav-link" href="../controller/home.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="app/views/cakes.php"">Cakes</a>
+                <a class="nav-link" href="../models/edit_product.php">Products</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Galary</a>
+                <a class="nav-link" href="../models/user_management.php">Account Management</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="app/views/about.php">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./app/views/contact.php">Contact</a>
+                <a class="nav-link" href="../models/message_management.php">Message Management</a>
               </li>
             </ul>
-            <form class="d-flex">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button class="btn text-white" type="submit">Search</button>
-            </form>
           </div>
           <!-- icons -->
           <div class="icons">
-            <a href="app/models/login.php"><img src="../image/user.png" alt="" width="20px" /></a>
-            <img src="../image/heart.png" alt="" width="20px" />
-            <img src="../image/add.png" alt="" width="24px" />
+            <a href="../controller/admin.php"><img src="../../../image/user.png" alt="" width="20px" /></a>
+            <img src="../../../image/heart.png" alt="" width="20px" />
+            <img src="../../../image/add.png" alt="" width="24px" />
           </div>
           <!-- icons -->
         </div>
