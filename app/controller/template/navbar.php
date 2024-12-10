@@ -61,7 +61,7 @@
           <div class="icons">
             <a href="user.php"><img src="../../../image/user.png" alt="" width="20px" /></a>
             <a href="wishlist.php"><img src="../../../image/heart.png" alt="" width="20px" /></a>
-            <img src="../../../image/add.png" alt="" width="24px" />
+            <a href="cart.php"><img src="../../../image/add.png" alt="" width="24px" /></a>
           </div>
           <!-- icons -->
         </div>

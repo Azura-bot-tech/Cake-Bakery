@@ -81,7 +81,12 @@
             <?php else: ?>
                 <a href="../controller/wishlist.php"><img src="../../../image/heart.png" alt="" width="20px" /></a>
             <?php endif; ?>
-            <img src="../../../image/add.png" alt="" width="24px" />
+
+            <?php if (!isset($_SESSION['username'])): ?>
+                <a href="../models/login.php"><img src="../../../image/add.png" alt="" width="24px" /></a>
+            <?php else: ?>
+                <a href="../controller/cart.php"><img src="../../../image/add.png" alt="" width="24px" /></a>
+            <?php endif; ?>
           </div>
           <!-- icons -->
         </div>

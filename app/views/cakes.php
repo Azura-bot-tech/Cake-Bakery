@@ -82,7 +82,7 @@
                   <button type="button" class="btn btn-secondary" title="Add to Wishlist" onclick="addToWishlist(<?php echo $row['id']; ?>)">
                     <i><img src="../../image/heart.png" alt="" width="30px" /></i>
                   </button>
-                  <button type="button" class="btn btn-secondary" title="Add to Cart">
+                  <button type="button" class="btn btn-secondary" title="Add to Cart" onclick="addToCart(<?php echo $row['id']; ?>)">
                     <i><img src="../../image/add.png" alt="" width="30px" /></i>
                   </button>
                 </div>
@@ -140,7 +140,7 @@
                       <button type="button" class="btn btn-secondary" title="Add to Wishlist" onclick="addToWishlist(<?php echo $row['id']; ?>)">
                         <i><img src="../../image/heart.png" alt="" width="30px" /></i>
                       </button>
-                      <button type="button" class="btn btn-secondary" title="Add to Cart">
+                      <button type="button" class="btn btn-secondary" title="Add to Cart" onclick="addToCart(<?php echo $row['id']; ?>)">
                         <i><img src="../../image/add.png" alt="" width="30px" /></i>
                       </button>
                     </div>
@@ -195,6 +195,29 @@
             alert('Product added to wishlist!');
           } else {
             alert('Failed to add to wishlist.');
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      }
+
+      function addToCart(productId) {
+        // ... existing code ...
+        // New AJAX request to add product to wishlist
+        fetch('../models/add_to_cart.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ id: productId }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert('Product added to cart!');
+          } else {
+            alert('Failed to add to cart.');
           }
         })
         .catch((error) => {
