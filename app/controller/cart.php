@@ -62,6 +62,24 @@ session_start();
       $sqlCart = "SELECT * FROM cart WHERE username = '$username'";
       $resultCart = $conn->query($sqlCart);
       $totalPrice = 0; // Initialize totalPrice before using it
+
+      if (isset($_POST['checkout'])) {
+          $username = $_SESSION['username'];
+          $sqlCart = "SELECT * FROM cart WHERE username = '$username'";
+          $resultCart = $conn->query($sqlCart);
+
+          if (mysqli_num_rows($resultCart) > 0) {
+              while ($cart = mysqli_fetch_assoc($resultCart)) {
+                  $productId = $cart['product_id'];
+                  $sqlOrder = "INSERT INTO order_history (product_id, username) VALUES ('$productId', '$username')";
+                  $conn->query($sqlOrder);
+              }
+              // Optionally, clear the cart after successful order
+              $conn->query("DELETE FROM cart WHERE username = '$username'");
+              echo "<script>window.location.href = '../models/payment.php';</script>";
+              exit();
+          }
+      }
       ?>
 
       <h1>Welcome, <?php echo $_SESSION['username']; ?>!</h1>
@@ -96,6 +114,9 @@ session_start();
                 </td>
             </tr>
         <?php endwhile; ?>
+        <?php
+        $_SESSION['totalPrice'] = $totalPrice;
+        ?>
         <?php else: ?>
             <tr>
                 <td colspan="6">Không tìm thấy sản phẩm nào!</td>
@@ -105,7 +126,9 @@ session_start();
         <tr>
             <th colspan="5">Tổng Cộng: <?= $totalPrice ?></th>
             <th>
-                <a href="../models/payment.php" class="edit-btn">Thanh Toán</a>
+                <form method="POST">
+                    <button type="submit" name="checkout" class="edit-btn">Thanh Toán</button>
+                </form>
             </th>
         </tr>
       </table>  

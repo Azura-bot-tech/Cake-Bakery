@@ -97,7 +97,7 @@
                 </div>
                 <p><?php echo $row['description']; ?></p>
                 <h6>
-                  Price: $<?php echo number_format($row['price'], 2); ?> <span><button>Add Cart</button></span>
+                  Price: $<?php echo number_format($row['price'], 2); ?> <span><button type="button" title="Add to Cart" onclick="addToCart(<?php echo $row['id']; ?>)">Add Cart</button></span>
                 </h6>
               </div>
             </div>
@@ -155,7 +155,7 @@
                     </div>
                     <p><?php echo $row['description']; ?></p>
                     <h6>
-                      Price: $<?php echo number_format($row['price'], 2); ?> <span><button>Add Cart</button></span>
+                      Price: $<?php echo number_format($row['price'], 2); ?> <span><button type="button" title="Add to Cart" onclick="addToCart(<?php echo $row['id']; ?>)">Add Cart</button></span>
                     </h6>
                   </div>
                 </div>

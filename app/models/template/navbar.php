@@ -60,8 +60,8 @@
           <!-- icons -->
           <div class="icons">
             <a href="../controller/user.php"><img src="../../../image/user.png" alt="" width="20px" /></a>
-            <img src="../../../image/heart.png" alt="" width="20px" />
-            <img src="../../../image/add.png" alt="" width="24px" />
+            <a href="../controller/wishlist.php"><img src="../../../image/heart.png" alt="" width="20px" /></a>
+            <a href="../controller/cart.php"><img src="../../../image/add.png" alt="" width="24px" /></a>
           </div>
           <!-- icons -->
         </div>
