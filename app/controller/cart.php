@@ -73,6 +73,7 @@ session_start();
             <th>Loại</th>
             <th>Thời Gian</th>
             <th></th>
+            <th></th>
         </tr>
 
         <?php if (mysqli_num_rows($resultCart) > 0): ?>
@@ -89,6 +90,9 @@ session_start();
                 <td><?= $rowProduct['price'] ?></td>
                 <td><?= $rowProduct['distribution'] ?></td>
                 <td><?= $time ?></td>
+                <td>
+                    <a href="../models/delete_cart.php?id=<?= $cart['id'] ?>" class="edit-btn">Xóa</a>
+                </td>
                 <td>
                     <a href="../models/payment.php?id=<?= $cart['id'] ?>" class="edit-btn">Thanh Toán</a>
                 </td>
