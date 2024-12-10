@@ -61,6 +61,7 @@ session_start();
 
       $sqlCart = "SELECT * FROM cart WHERE username = '$username'";
       $resultCart = $conn->query($sqlCart);
+      $totalPrice = 0; // Initialize totalPrice before using it
       ?>
 
       <h1>Welcome, <?php echo $_SESSION['username']; ?>!</h1>
@@ -73,7 +74,6 @@ session_start();
             <th>Loại</th>
             <th>Thời Gian</th>
             <th></th>
-            <th></th>
         </tr>
 
         <?php if (mysqli_num_rows($resultCart) > 0): ?>
@@ -83,6 +83,7 @@ session_start();
                 $sqlProduct = "SELECT * FROM product WHERE id = '$productId'";
                 $resultProduct = $conn->query($sqlProduct);
                 $rowProduct = $resultProduct->fetch_assoc();
+                $totalPrice += $rowProduct['price'];
                 ?>
             <tr>
                 <td><?= $rowProduct['name'] ?></td>
@@ -93,9 +94,6 @@ session_start();
                 <td>
                     <a href="../models/delete_cart.php?id=<?= $cart['id'] ?>" class="edit-btn">Xóa</a>
                 </td>
-                <td>
-                    <a href="../models/payment.php?id=<?= $cart['id'] ?>" class="edit-btn">Thanh Toán</a>
-                </td>
             </tr>
         <?php endwhile; ?>
         <?php else: ?>
@@ -103,6 +101,13 @@ session_start();
                 <td colspan="6">Không tìm thấy sản phẩm nào!</td>
             </tr>
         <?php endif; ?>
+
+        <tr>
+            <th colspan="5">Tổng Cộng: <?= $totalPrice ?></th>
+            <th>
+                <a href="../models/payment.php" class="edit-btn">Thanh Toán</a>
+            </th>
+        </tr>
       </table>  
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
