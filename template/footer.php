@@ -2,8 +2,7 @@
 <footer id="footer" data-aos="fade-up" data-aos-duration="1500">
         <h1 class="text-center">Cake Bakery</h1>
         <p class="text-center">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
-          accusantium.
+        Welcome to Cake Bakery. We offer the finest cakes for you!
         </p>
         <div class="icons text-center">
           <i class="bx bxl-twitter"></i>

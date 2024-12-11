@@ -37,9 +37,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="../views/cakes.php">Cakes</a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link" href="#">Galary</a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a class="nav-link" href="../views/about.php">About</a>
               </li>
@@ -60,8 +60,8 @@
           <!-- icons -->
           <div class="icons">
             <a href="user.php"><img src="../../../image/user.png" alt="" width="20px" /></a>
-            <img src="../../../image/heart.png" alt="" width="20px" />
-            <img src="../../../image/add.png" alt="" width="24px" />
+            <a href="wishlist.php"><img src="../../../image/heart.png" alt="" width="20px" /></a>
+            <a href="cart.php"><img src="../../../image/add.png" alt="" width="24px" /></a>
           </div>
           <!-- icons -->
         </div>

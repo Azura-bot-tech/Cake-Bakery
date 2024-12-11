@@ -2,6 +2,20 @@ drop database if exists `cake`;
 create database `cake`;
 use `cake`;
 
+-- Tạo bảng admin nếu chưa tồn tại
+drop table if exists `admin`;
+create table `admin` (
+    `id` int not null primary key auto_increment,
+    `full_name` varchar(255) not null,
+    `username` varchar(255) not null unique,
+    `password` varchar(255) not null,
+    `email` varchar(255) not null unique
+);
+
+-- Thêm tài khoản admin mẫu
+insert into `admin` (`full_name`, `username`, `password`, `email`) 
+values ('Admin', 'admin', 'Admin', 'admin01@example.com');
+
 drop table if exists `user`;
 create table `user` (
     `id` int not null primary key auto_increment,
@@ -36,3 +50,42 @@ insert into `product` (`id`, `name`, `price`, `description`, `image_url`, `distr
 ('10', 'Bir Cup Cake', '300.20', 'Description of Cake 10', 'https://res.cloudinary.com/dukdqd5ao/image/upload/v1730684108/c10_jbshlv.png', 'Birthday Cakes'),
 ('11', 'Pink Birthday Cake', '100.50', 'Description of Cake 11', 'https://res.cloudinary.com/dukdqd5ao/image/upload/v1730684108/c11_ex9zqh.png', 'Birthday Cakes'),
 ('12', 'Cup Cake', '50.10', 'Description of Cake 12', 'https://res.cloudinary.com/dukdqd5ao/image/upload/v1730684109/c12_c7k2se.png', 'Birthday Cakes');
+
+drop table if exists `contact_message`;
+create table `contact_message` (
+    `id` int not null primary key auto_increment,
+    `name` varchar(255) not null,
+    `email` varchar(255) not null,
+    `phone` varchar(255) not null,
+    `message` text not null,
+    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+drop table if exists `wishlist`;
+create table `wishlist` (
+    `id` int not null primary key auto_increment,
+    `product_id` int not null,
+    `username` varchar(255) not null,
+    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+alter table `wishlist` add foreign key (`product_id`) references `product`(`id`) on delete cascade;
+
+drop table if exists `cart`;
+create table `cart` (
+    `id` int not null primary key auto_increment,
+    `product_id` int not null,
+    `username` varchar(255) not null,
+    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+alter table `cart` add foreign key (`product_id`) references `product`(`id`) on delete cascade;
+
+drop table if exists `order_history`;
+create table `order_history` (
+    `id` int not null primary key auto_increment,
+    `product_id` int not null,
+    `username` varchar(255) not null
+);
+
+alter table `order_history` add foreign key (`product_id`) references `product`(`id`) on delete cascade;

@@ -1,0 +1,274 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Uchen", serif;
+  }
+  body {
+    background-color: #2e1700 !important;
+  }
+  .all-content {
+    background: #2e1700;
+  }
+  /* navbar */
+  #navbar {
+    background-color: #573818;
+    padding-left: 60px;
+    font-weight: bold;
+  }
+  #logo {
+    font-size: 23px;
+    color: white;
+  }
+  #logo img {
+    margin-bottom: 15px;
+  }
+  .navbar-nav {
+    margin-left: 10px;
+  }
+  .nav-item a {
+    color: white;
+  }
+  .nav-item a:hover {
+    color: rgb(179, 34, 21);
+  }
+  .navbar-collapse form input {
+    background-color: white;
+    width: 300px;
+    border-radius: 5px;
+    border: 2px solid rgba(161, 109, 14, 1);
+    margin-left: 130px;
+  }
+  .navbar-collapse form button {
+    background-color: rgb(101, 78, 35);
+    border-radius: 5px;
+    margin-right: 35px;
+    border: 2px solid rgba(161, 109, 14, 1);
+    margin-left: -5px;
+  }
+  .navbar-collapse form button:hover {
+    background-color: rgb(217, 158, 68);
+  }
+  .nav-link {
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px black;
+    margin-left: 15px;
+    transition: 0.5s ease;
+  }
+  .nav-link:hover {
+    background-color: rgba(161, 109, 14, 1);
+    color: white;
+    border-radius: 5px;
+  }
+  .icons {
+    margin-left: 30px;
+    margin-right: 15px;
+  }
+  .icons img {
+    margin-left: 10px;
+    transition: 0.5s ease;
+    cursor: pointer;
+  }
+  .icons img:hover {
+    transform: translateY(-5px);
+  }
+  @media screen and (max-width: 330px) {
+    #logo {
+      font-size: 15px;
+    }
+  }
+  /* navbar end */
+
+/* Header styling */
+h1 {
+    text-align: center;
+    color: #FFE4C4;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-bottom: 2px solid #DEB887;
+}
+
+/* Add User button styling */
+.add-btn {
+    background: #DEB887 !important;
+    color: #8B4513 !important;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 20px 0;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.add-btn:hover {
+    background: #FFE4B5 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+th {
+    background: #DEB887;
+    color: #8B4513;
+    padding: 15px;
+    text-align: left;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+td {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(222, 184, 135, 0.3);
+    color: #FFE4C4;
+}
+
+tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Button styling */
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin: 0 5px;
+}
+
+.edit-btn {
+    background: #DEB887 !important;
+    color: #8B4513 !important;
+}
+
+.delete-btn {
+    background: #CD853F !important;
+    color: #FFE4C4 !important;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    background: linear-gradient(to bottom right, #8B4513, #654321);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    margin: 50px auto;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 24px;
+    color: #DEB887;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #FFE4B5;
+}
+
+/* Form styling */
+#userForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#userForm input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #DEB887;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #654321;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+#userForm input:focus {
+    outline: none;
+    border-color: #FFE4B5;
+    box-shadow: 0 0 5px rgba(222, 184, 135, 0.5);
+    background: #FFF;
+}
+
+#userForm input::placeholder {
+    color: #A0522D;
+    opacity: 0.7;
+}
+
+/* Modal header styling */
+.modal-content h3 {
+    text-align: center;
+    color: #FFE4C4;
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #DEB887;
+    padding-bottom: 15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .modal-content {
+        margin: 20px;
+        padding: 20px;
+    }
+    
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    th, td {
+        min-width: 120px;
+    }
+    
+    #userForm input {
+        font-size: 16px; /* Prevents zoom on mobile */
+    }
+    
+    .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
