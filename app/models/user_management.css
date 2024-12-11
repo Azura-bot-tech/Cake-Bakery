@@ -160,6 +160,11 @@ tr:hover {
     color: #8B4513 !important;
 }
 
+.fix-btn {
+  background: #DEB887 !important;
+  color: #8B4513 !important;
+}
+
 .delete-btn {
     background: #CD853F !important;
     color: #FFE4C4 !important;
@@ -202,8 +207,22 @@ tr:hover {
     transition: color 0.3s ease;
 }
 
-.close-btn:hover {
+span.close-btn-fix {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 24px;
+  color: #DEB887;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+span.close-btn:hover {
     color: #FFE4B5;
+}
+
+.close-btn-fix:hover {
+  color: #FFE4B5;
 }
 
 /* Form styling */

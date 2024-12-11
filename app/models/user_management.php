@@ -7,6 +7,25 @@ $sql = "SELECT * FROM user";
 $result = $conn->query($sql);
 $users = $result->fetch_all(MYSQLI_ASSOC);
 
+// Xử lý yêu cầu lấy thông tin user
+if (isset($_GET['get_user']) && $_GET['get_user'] == 1) {
+    $id = intval($_GET['id']);
+    $sql = "SELECT * FROM user WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $user = $result->fetch_assoc();
+
+    if ($user) {
+        echo json_encode($user);
+    } else {
+        echo json_encode(['error' => 'Người dùng không tồn tại']);
+    }
+    exit();
+}
+
 // Xử lý thêm user
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_user'])) {
     $full_name = $_POST['full_name'];
@@ -142,6 +161,8 @@ if (isset($_GET['delete_user'])) {
                 <td>
                     <button class="btn edit-btn" data-id="<?= $user['id'] ?>">Sửa</button>
                     <button class="btn delete-btn" data-id="<?= $user['id'] ?>">Xóa</button>
+                    <button class="btn order-btn" data-username="<?= $user['username'] ?>" style="background: #DEB887 !important;
+                    color: #8B4513 !important;">Order History</button>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -164,6 +185,40 @@ if (isset($_GET['delete_user'])) {
         </div>
     </div>
 
+    <!-- Modal sửa user -->
+    <div id="userModal-fix" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-btn close-btn-fix">&times;</span>
+            <h3 id="modalTitle">Form User</h3>
+            <form id="userForm" method="POST">
+                <input type="hidden" name="id" id="userIdFix">
+                <div>
+                    <label for="fullName">Full Name</label>
+                    <input type="text" name="full_name" id="fullNameFix" placeholder="Full Name" required>
+                </div>
+                <div>
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="usernameFix" placeholder="Username" required>
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="emailFix" placeholder="Email" required>
+                </div>
+                
+                <button type="submit" name="update_user" id="formSubmitBtnFix" class="btn fix-btn" style="background: #DEB887 !important;
+                    color: #8B4513 !important;">Cập nhật</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal coi lịch sử order -->
+    <div id="userModal-order" class="modal" style="display:none;">
+        <span class="close-btn close-btn-order">&times;</span>
+        <div class="modal-content">
+        
+        </div>
+    </div>
+
     <script>
         const addUserBtn = document.getElementById('addUserBtn');
         const modal = document.getElementById('userModal');
@@ -171,11 +226,17 @@ if (isset($_GET['delete_user'])) {
         const formSubmitBtn = document.getElementById('formSubmitBtn');
         const userForm = document.getElementById('userForm');
 
-        const fullNameInput = document.getElementById('fullName');
-        const usernameInput = document.getElementById('username');
-        const emailInput = document.getElementById('email');
-        const passwordInput = document.getElementById('password');
-        const userIdInput = document.getElementById('userId');
+        const modalFix = document.getElementById('userModal-fix');
+        const closeBtnFix = document.querySelector('.close-btn-fix');
+        const userIdFix = document.getElementById('userIdFix');
+        const fullNameInput = document.getElementById('fullNameFix');
+        const usernameInput = document.getElementById('usernameFix');
+        const emailInput = document.getElementById('emailFix');
+
+        const orderButtons = document.querySelectorAll('.order-btn');
+        const orderModal = document.getElementById('userModal-order');
+        const closeBtnOrder = document.querySelector('.close-btn-order');
+        const modalContent = orderModal.querySelector('.modal-content');
 
         // Mở modal thêm user
         addUserBtn.addEventListener('click', () => {
@@ -211,22 +272,60 @@ if (isset($_GET['delete_user'])) {
         document.querySelectorAll('.edit-btn').forEach(button => {
             button.addEventListener('click', () => {
                 const userId = button.getAttribute('data-id');
+                // Gửi yêu cầu AJAX lấy thông tin user
                 fetch(`?get_user=1&id=${userId}`)
                     .then(response => response.json())
                     .then(data => {
                         if (data.error) {
                             alert(data.error);
                         } else {
-                            userIdInput.value = data.id;
+                            modalFix.style.display = 'block';
+                            // Điền dữ liệu vào form
+                            userIdFix.value =data.id
                             fullNameInput.value = data.full_name;
                             usernameInput.value = data.username;
                             emailInput.value = data.email;
-                            passwordInput.style.display = 'none';
-                            formSubmitBtn.innerText = 'Cập nhật';
-                            modal.style.display = 'block';
+                             
                         }
                     });
             });
+        });
+        // Đóng modal
+        closeBtnFix.addEventListener('click', () => {
+            modalFix.style.display = 'none';
+        });
+
+        window.addEventListener('click', event => {
+            if (event.target === modal) {
+                modalFix.style.display = 'none';
+            }
+        });
+
+        // Hiển thị lịch sử order
+        document.querySelectorAll('.order-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const username = button.dataset.username;
+            
+                // Gửi AJAX để lấy lịch sử order
+                fetch(`get_order_history.php?username=${username}`)
+                    .then(response => response.text())
+                    .then(html => {
+                        modalContent.innerHTML = html; // Chèn HTML lịch sử order vào modal
+                        orderModal.style.display = 'block'; // Hiển thị modal
+                    })
+                    .catch(error => console.error('Lỗi:', error));
+            });
+        });
+
+        // Đóng modal
+        closeBtnOrder.addEventListener('click', () => {
+            orderModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', event => {
+            if (event.target === modal) {
+                orderModal.style.display = 'none';
+            }
         });
     </script>
 </body>

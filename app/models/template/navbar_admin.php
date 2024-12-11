@@ -48,8 +48,6 @@
           <!-- icons -->
           <div class="icons">
             <a href="../controller/admin.php"><img src="../../../image/user.png" alt="" width="20px" /></a>
-            <img src="../../../image/heart.png" alt="" width="20px" />
-            <img src="../../../image/add.png" alt="" width="24px" />
           </div>
           <!-- icons -->
         </div>
