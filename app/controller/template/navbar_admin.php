@@ -14,7 +14,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <!-- Brand -->
-          <a class="navbar-brand" href="../controller/home.php" id="logo"
+          <a class="navbar-brand" href="home.php" id="logo"
             ><img src="../../../image/logo.png" alt="" width="50px" />Cake Bakery</a
           >
 
@@ -32,36 +32,22 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="../controller/home.php">Home</a>
+                <a class="nav-link" href="home.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="../views/cakes.php">Cakes</a>
-              </li>
-              <!-- <li class="nav-item">
-                <a class="nav-link" href="#">Galary</a>
-              </li> -->
-              <li class="nav-item">
-                <a class="nav-link" href="../views/about.php">About</a>
+                <a class="nav-link" href="../models/edit_product.php">Products</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="../views/contact.php">Contact</a>
+                <a class="nav-link" href="../models/user_management.php">Account Management</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../models/message_management.php">Message Management</a>
               </li>
             </ul>
-            <form class="d-flex">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button class="btn text-white" type="submit">Search</button>
-            </form>
           </div>
           <!-- icons -->
           <div class="icons">
-            <a href="../controller/user.php"><img src="../../../image/user.png" alt="" width="20px" /></a>
-            <a href="../controller/wishlist.php"><img src="../../../image/heart.png" alt="" width="20px" /></a>
-            <a href="../controller/cart.php"><img src="../../../image/add.png" alt="" width="24px" /></a>
+            <a href="admin.php"><img src="../../../image/user.png" alt="" width="20px" /></a>
           </div>
           <!-- icons -->
         </div>

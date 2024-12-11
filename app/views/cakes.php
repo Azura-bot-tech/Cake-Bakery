@@ -1,5 +1,5 @@
-<?php
-session_start();
+<?php 
+  session_start(); // Bắt đầu session để lấy thông tin người dùng
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +52,7 @@ session_start();
     <!-- animation links -->
   </head>
   <body>
-    <?php include "template/navbar.php"; ?>
+    <?php include "template/navbar.php"; ?> 
 
       <!-- product cards -->
       <?php
@@ -79,10 +79,10 @@ session_start();
                   <button type="button" class="btn btn-secondary" title="Quick View">
                     <i><img src="../../image/views.png" alt="" width="30px" /></i>
                   </button>
-                  <button type="button" class="btn btn-secondary" title="Add to Wishlist">
+                  <button type="button" class="btn btn-secondary" title="Add to Wishlist" onclick="addToWishlist(<?php echo $row['id']; ?>)">
                     <i><img src="../../image/heart.png" alt="" width="30px" /></i>
                   </button>
-                  <button type="button" class="btn btn-secondary" title="Add to Cart">
+                  <button type="button" class="btn btn-secondary" title="Add to Cart" onclick="addToCart(<?php echo $row['id']; ?>)">
                     <i><img src="../../image/add.png" alt="" width="30px" /></i>
                   </button>
                 </div>
@@ -97,7 +97,7 @@ session_start();
                 </div>
                 <p><?php echo $row['description']; ?></p>
                 <h6>
-                  Price: $<?php echo number_format($row['price'], 2); ?> <span><button>Add Cart</button></span>
+                  Price: $<?php echo number_format($row['price'], 2); ?> <span><button type="button" title="Add to Cart" onclick="addToCart(<?php echo $row['id']; ?>)">Add Cart</button></span>
                 </h6>
               </div>
             </div>
@@ -137,10 +137,10 @@ session_start();
                       <button type="button" class="btn btn-secondary" title="Quick View">
                         <i><img src="../../image/views.png" alt="" width="30px" /></i>
                       </button>
-                      <button type="button" class="btn btn-secondary" title="Add to Wishlist">
+                      <button type="button" class="btn btn-secondary" title="Add to Wishlist" onclick="addToWishlist(<?php echo $row['id']; ?>)">
                         <i><img src="../../image/heart.png" alt="" width="30px" /></i>
                       </button>
-                      <button type="button" class="btn btn-secondary" title="Add to Cart">
+                      <button type="button" class="btn btn-secondary" title="Add to Cart" onclick="addToCart(<?php echo $row['id']; ?>)">
                         <i><img src="../../image/add.png" alt="" width="30px" /></i>
                       </button>
                     </div>
@@ -155,7 +155,7 @@ session_start();
                     </div>
                     <p><?php echo $row['description']; ?></p>
                     <h6>
-                      Price: $<?php echo number_format($row['price'], 2); ?> <span><button>Add Cart</button></span>
+                      Price: $<?php echo number_format($row['price'], 2); ?> <span><button type="button" title="Add to Cart" onclick="addToCart(<?php echo $row['id']; ?>)">Add Cart</button></span>
                     </h6>
                   </div>
                 </div>
@@ -170,14 +170,61 @@ session_start();
           </div>
         </div>
       </section>
-
       <!-- product cards end-->
-
     <?php include "template/footer.php";?>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init();
     </script>
+
+    <script>
+      function addToWishlist(productId) {
+        // ... existing code ...
+        // New AJAX request to add product to wishlist
+        fetch('../models/add_to_wishlist.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ id: productId }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert('Product added to wishlist!');
+          } else {
+            alert('Failed to add to wishlist.');
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      }
+
+      function addToCart(productId) {
+        // ... existing code ...
+        // New AJAX request to add product to wishlist
+        fetch('../models/add_to_cart.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ id: productId }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert('Product added to cart!');
+          } else {
+            alert('Failed to add to cart.');
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      }
+    </script>
+    
   </body>
 </html>
